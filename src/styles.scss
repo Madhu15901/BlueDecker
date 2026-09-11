@@ -1,0 +1,365 @@
+// ============================================================
+// BlueDecker Global Design System
+// HaloGrid-inspired Dark Glassmorphism Theme
+// ============================================================
+
+// --- CSS Custom Properties (Design Tokens) ---
+:root {
+  // Colors
+  --color-bg:           #050A14;
+  --color-surface:      #0C1628;
+  --color-surface-2:    #0F1E38;
+  --color-glass:        rgba(13, 24, 50, 0.6);
+  --color-glass-light:  rgba(255, 255, 255, 0.04);
+
+  --color-primary:      #6C63FF;
+  --color-primary-dark: #5248D9;
+  --color-primary-glow: rgba(108, 99, 255, 0.35);
+  --color-accent:       #00D4FF;
+  --color-accent-glow:  rgba(0, 212, 255, 0.3);
+  --color-danger:       #FF6B6B;
+
+  --color-text:         #E8EDF8;
+  --color-text-muted:   #8899BB;
+  --color-text-dim:     #4A5878;
+
+  --color-border:       rgba(108, 99, 255, 0.2);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+
+  // Gradients
+  --gradient-primary:   linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%);
+  --gradient-hero:      radial-gradient(ellipse at 50% 50%, rgba(108, 99, 255, 0.15) 0%, transparent 70%);
+  --gradient-card:      linear-gradient(135deg, rgba(108,99,255,0.08) 0%, rgba(0,212,255,0.04) 100%);
+
+  // Glass
+  --glass-blur:         blur(20px);
+  --glass-blur-sm:      blur(12px);
+
+  // Spacing
+  --container-max:      1200px;
+  --section-padding:    5rem 1.5rem;
+
+  // Shadows
+  --shadow-glow:        0 0 40px rgba(108, 99, 255, 0.2);
+  --shadow-card:        0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elevated:    0 20px 60px rgba(0, 0, 0, 0.6);
+
+  // Transitions
+  --transition-base:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast:    0.15s ease;
+  --transition-slow:    0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Border Radius
+  --radius-sm:          8px;
+  --radius-md:          12px;
+  --radius-lg:          20px;
+  --radius-xl:          28px;
+  --radius-full:        9999px;
+
+  // Font
+  --font-heading:       'Inter', -apple-system, sans-serif;
+  --font-body:          'Inter', -apple-system, sans-serif;
+  --font-mono:          'JetBrains Mono', 'Fira Code', monospace;
+}
+
+// --- Reset & Base ---
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// --- Typography ---
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// --- Utilities ---
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+// Gradient Text
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Glass Card
+.glass-card {
+  background: var(--color-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-base);
+
+  &:hover {
+    border-color: rgba(108, 99, 255, 0.4);
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-base);
+  white-space: nowrap;
+
+  &-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 20px var(--color-primary-glow);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--color-primary-glow);
+    }
+    &:active { transform: translateY(0); }
+  }
+
+  &-outline {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    backdrop-filter: var(--glass-blur-sm);
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: rgba(108, 99, 255, 0.08);
+    }
+  }
+
+  &-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  &-lg {
+    padding: 1rem 2.25rem;
+    font-size: 1.05rem;
+  }
+}
+
+// Badge / Chip
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  &-primary {
+    background: rgba(108, 99, 255, 0.15);
+    color: var(--color-primary);
+    border: 1px solid rgba(108, 99, 255, 0.3);
+  }
+
+  &-accent {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--color-accent);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+  }
+
+  &-danger {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--color-danger);
+    border: 1px solid rgba(255, 107, 107, 0.25);
+  }
+}
+
+// Section Labels
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+  }
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+// --- Scroll Reveal Animation ---
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+// --- Neon Glow Effects ---
+.neon-border {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: var(--gradient-primary);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  &:hover::after { opacity: 0.5; }
+}
+
+// --- Grid Layouts ---
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+// --- Cyber Background Lines ---
+.cyber-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+// --- Divider ---
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  margin: 3rem 0;
+}
+
+// --- Tag list ---
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+// --- Responsive helpers ---
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 3.5rem 1rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+}
+
+// --- Scrollbar ---
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+// --- Selection ---
+::selection {
+  background: rgba(108, 99, 255, 0.3);
+  color: var(--color-text);
+}
